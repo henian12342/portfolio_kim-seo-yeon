@@ -1,5 +1,6 @@
 $(document).ready(function(){
-
+	AOS.init();
+	
 		// 스크롤 시 헤더 표시
 	$("html").on("mousewheel", function(event, delta){
 		if(delta < 0){
@@ -22,5 +23,17 @@ $(document).ready(function(){
 			event.preventDefault();
 			$('html,body').animate({scrollTop:$(this.hash).offset().top}, 900);
 		});
+
+		// 애니메이션 효과
+		// $(window).on('scroll', function() {
+		// 	var targetAbout = $('#about article');
+		// 	var scrollTop = $(window).scrollTop();
+		// 	var elementOffset = targetAbout.offset().top;
+		// 	var windowHeight = $(window).height();
+
+		// 	if (scrollTop + windowHeight > elementOffset) {
+		// 		targetAbout.addClass('fade-in');
+		// 	}
+		// });
 
 });
