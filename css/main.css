@@ -303,7 +303,9 @@ header {
 /* -- portfolio -- */
 #portfolio {
   padding-top: 150px;
-  .container {
+  .contents-group-pc {
+    max-width: 1524px;
+    margin: 0 auto;
     height: 100%;
     padding: 70px 30px;
     .title {
@@ -378,6 +380,56 @@ header {
         }
       }
     }
+  }
+  .contents-group-mobile {
+    display: none;
+    padding: 50px 0;
+    .title {
+      position: relative;
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 600;
+      font-size: 40px;
+      margin-bottom: 20px;
+      margin-left: 30px;
+      &::after {
+        content: 'Publishing';
+        position: absolute;
+        font-size: 14px;
+        top: -15px;
+        left: 0;
+        font-weight: 200;
+      }
+    }
+    .title-graphic {
+      position: relative;
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 600;
+      font-size: 40px;
+      margin-bottom: 20px;
+      margin-left: 30px;
+      &::after {
+        content: 'Graphic Design';
+        position: absolute;
+        font-size: 14px;
+        top: -15px;
+        left: 0;
+        font-weight: 200;
+      }
+    }
+    .carousel {
+      background: #EEE;
+    }
+    
+    .carousel-cell {
+      margin-right: 20px;
+      overflow: hidden;
+    }
+    
+    .carousel-cell img {
+      display: block;
+      height: 200px;
+    }
+    .flickity-button {display: none;}
   }
 }
 
@@ -479,12 +531,17 @@ footer {
     .container {
       display: flex;
       flex-direction: column;
+      .text {
+        padding: 40px 30%;
+      }
     }
   }
+
 }
 
 @media (max-width:960px){
   #about {
+    padding: 50px 0;
     article {
       flex-direction: column;
     }
@@ -517,6 +574,16 @@ footer {
             padding-top: 30px;
           }
         }
+      }
+    }
+  }
+  #portfolio {
+    padding: 70px 0;
+    .contents-group-pc {display: none;}
+    .contents-group-mobile {
+      display: block;
+      .carousel-cell img {
+        height: 400px;
       }
     }
   }
@@ -583,13 +650,11 @@ footer {
             font-size: 70px;
             font-weight: 800;
             line-height: 81px;
-            text-align: left;
             text-transform: uppercase;
           }
           h2 {
             font-size: 16px;
             text-transform: uppercase;
-            text-align: left;
             padding-top: 30px;
           }
         }
@@ -604,16 +669,14 @@ footer {
       .home-title {
         .title-group {
           h1 {
-            font-size: 52px;
+            font-size: 60px;
             font-weight: 800;
-            line-height: 62px;
-            text-align: left;
+            line-height: 72px;
             text-transform: uppercase;
           }
           h2 {
             font-size: 20px;
             text-transform: uppercase;
-            text-align: left;
             padding-top: 30px;
           }
         }
@@ -630,17 +693,20 @@ footer {
       align-items: center;
       .photo {
         width: 80%; 
-        height: 251px;
-        border-radius: 15px;
+        height: 180px;
+        border-radius: 10px;
         background: url(../images/about.jpg) no-repeat center/cover;
       }
       .about-text {
         padding: 40px 0;
         width: 80%;
+        font-size: 19px;
+        line-height: 1.5;
         h1.title-main {
           font-size: 38px;
           font-weight: 700;
           text-transform: uppercase;
+          margin-bottom: 20px;
         }
         p {
           padding-top: 20px;
@@ -659,12 +725,54 @@ footer {
     }
   }
 
+  #portfolio {
+    .contents-group-mobile {
+      text-align: center;
+      .title {
+        padding: 0;
+        margin: 0;
+        font-size: 25px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        &::after {
+          opacity: 0;
+        }
+      }
+      .title-graphic {
+        padding: 0;
+        margin: 0;
+        font-size: 25px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        &::after {
+          opacity: 0;
+        }
+      }
+  }
 } 
+}
 
 @media (max-width:425px){
   #home {
     height: 100vh;
-  }
+    article {
+      .home-title {
+        .title-group {
+          h1 {
+            font-size: 55px;
+            font-weight: 800;
+            line-height: 72px;
+            text-transform: uppercase;
+          }
+          h2 {
+            font-size: 20px;
+            text-transform: uppercase;
+            padding-top: 30px;
+          }
+        }
+      }
+    }
+  } 
   #about {
     article {
       .about-text {
@@ -695,6 +803,9 @@ footer {
             line-height: 55px;
             text-align: left;
             text-transform: uppercase;
+          }
+          h2 {
+            font-size: 18px;
           }
         }
       }
@@ -741,6 +852,26 @@ footer {
 
 } 
 
+@media (max-width:325px){
+  #home {
+    article {
+      .home-title {
+        .title-group {
+          h1 {
+            font-size: 38px;
+            font-weight: 800;
+            line-height: 55px;
+            text-align: center;
+            text-transform: uppercase;
+          }
+          h2 {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+} 
 /* -- animation -- */
 @keyframes rotate {
   0% {transform: rotate(0deg);}
