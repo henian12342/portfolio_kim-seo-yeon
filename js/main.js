@@ -33,6 +33,11 @@ $(document).ready(function(){
 		$('html,body').animate({scrollTop:$(this.hash).offset().top}, 900);
 	});
 
+	$(".dropDown-nav li a").click(function(event){
+		event.preventDefault();
+		$('html,body').animate({scrollTop:$(this.hash).offset().top}, 900);
+	});
+
 	// 플리키티 슬라이드
 	var $carousel = $('.carousel-m').flickity({
 		imagesLoaded: true,
