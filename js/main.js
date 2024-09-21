@@ -13,6 +13,23 @@ document.querySelectorAll('nav a').forEach(anchor => {
   });
 });
 
+// 햄버거 버튼
+const menuTrigger = document.querySelector('.menu-icon');
+const nav = document.querySelector('nav');
+
+menuTrigger.addEventListener('click', (event) => {
+  event.currentTarget.classList.toggle('active-1');
+  nav.classList.toggle('active-2');
+});
+
+// 메뉴 버튼 클릭 시 메뉴영역 닫힘
+document.querySelectorAll('nav ul li').forEach( e => {
+  e.addEventListener('click',function(event){
+    nav.classList.toggle('active-2');
+    menuTrigger.classList.toggle('active-1');
+  })
+});
+
 // reload
   document.querySelector('header .logo').addEventListener('click',function(){
     location.reload();
