@@ -1,65 +1,62 @@
-$(document).ready(function(){
-	AOS.init();
-	
-	// 스크롤 시 헤더 표시
-	$("html").on("mousewheel", function(event, delta){
-		if(delta < 0){
-			$("header").css("opacity" ,"1");
-		}
-	});
-
-	// about 애니메이션 
-	$(window).scroll(function() {
-		// 현재 스크롤 위치 확인
-		var scrollPosition = $(this).scrollTop();
-		// 특정 구간을 지정하여 애니메이션을 추가할 요소 선택
-		var targetElement = $('#about .about-text h1');
-		// 특정 스크롤 위치에 도달하면 애니메이션 추가
-		if (scrollPosition > 700) {
-				targetElement.addClass('lineani');
-		} else {
-				targetElement.removeClass('lineani');
-		}
-	});
-
-	// 버튼 클릭 시 드롭다운 메뉴 활성화
-	$("header .menu-btn").click(function(){
-		$(".dropDown-nav").slideToggle();
-	})
-
-	// 메뉴 클릭 시 해당 섹션으로 이동
-	$(".nav li a").click(function(event){
-		event.preventDefault();
-		$('html,body').animate({scrollTop:$(this.hash).offset().top}, 900);
-	});
-
-	$(".dropDown-nav li a").click(function(event){
-		event.preventDefault();
-		$('html,body').animate({scrollTop:$(this.hash).offset().top}, 900);
-	});
-
-	// 플리키티 슬라이드
-	var $carousel = $('.carousel-m').flickity({
-		imagesLoaded: true,
-		percentPosition: false,
-	});
-	
-	var $imgs = $carousel.find('.carousel-cell img');
-	// get transform property
-	var docStyle = document.documentElement.style;
-	var transformProp = typeof docStyle.transform == 'string' ?
-		'transform' : 'WebkitTransform';
-	// get Flickity instance
-	var flkty = $carousel.data('flickity');
-	
-	$carousel.on( 'scroll.flickity', function() {
-		flkty.slides.forEach( function( slide, i ) {
-			var img = $imgs[i];
-			var x = ( slide.target + flkty.x ) * -1/3;
-			img.style[ transformProp ] = 'translateX(' + x  + 'px)';
-		});
-	});
-	
-
+// nav
+document.querySelectorAll('nav a').forEach(anchor => {
+  anchor.addEventListener('click', function(event) {
+    event.preventDefault();
+    // 클릭한 링크의 href 속성 값 추출
+    const targetId = this.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
+    // 해당 섹션으로 부드럽게 스크롤 이동
+    window.scrollTo({
+      top: targetElement.offsetTop,
+      behavior: 'smooth'
+    });
+  });
 });
 
+// reload
+  document.querySelector('header .logo').addEventListener('click',function(){
+    location.reload();
+    window.scrollTo({ top: 0 });
+  })
+
+// scroll event
+window.addEventListener('scroll', function(){
+  // electricBulb
+  let electricBulb = document.querySelector('.object-electricBulb');
+  if(window.scrollY > 1000){
+    electricBulb.style.opacity = 0;
+  }else{
+    electricBulb.style.opacity = 1;
+  };
+
+  // wrok buble
+  var h = document.documentElement.scrollTop || document.body.scrollTop;
+  if ( h > 300 && h < 1500 ) {
+    document.querySelectorAll('#work .object img').forEach(function(el) {
+      el.style.scale = '1';
+    });
+  } else {
+    document.querySelectorAll('#work .object img').forEach(function(el) {
+      el.style.scale = '0';
+    });
+  };
+});
+
+// projcetItem Observer
+let Observer = new IntersectionObserver((event)=>{
+  event.forEach((box)=>{
+    if(box.isIntersecting){
+      box.target.style.opacity = 1;
+      // box.target.style.transform = 'translateY(30%)';
+    }else {
+      box.target.style.opacity = 0;
+      // box.target.style.transform = 'translateY(0)';
+    }
+  })
+})
+
+let projectItem = document.querySelectorAll('.project-item');
+Observer.observe(projectItem[0]);
+Observer.observe(projectItem[1]);
+Observer.observe(projectItem[2]);
+Observer.observe(projectItem[3]);
